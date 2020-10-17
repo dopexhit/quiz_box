@@ -10,7 +10,7 @@ class _LoginSignupState extends State<LoginSignup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Container(
