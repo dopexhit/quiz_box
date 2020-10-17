@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_box/screens/login_signup.dart';
-import 'package:simple_animations/simple_animations.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:quiz_box/animations/FadeAnimation.dart';
 
@@ -83,7 +82,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
         end: 32.0
     ).animate(_scale2Controller)..addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: Container()));
+        Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: LoginSignup()));
       }
     }); //if animation is complete control transition of page to next activity(login)
   }
@@ -203,7 +202,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
                                                       shape: BoxShape.circle,
                                                       color: Colors.blue
                                                   ),
-                                                  child: hideIcon == false ? Icon(Icons.arrow_forward, color: Colors.white,) : LoginSignup(),
+                                                  child: hideIcon == false ? Icon(Icons.arrow_forward, color: Colors.white,) : Container(),
                                                 )
                                             ),
                                           ),
