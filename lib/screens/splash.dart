@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_box/screens/login_signup.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:quiz_box/animations/FadeAnimation.dart';
+import 'package:quiz_box/animations/fade_animation.dart';
+import 'package:quiz_box/services/wrapper.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -10,6 +13,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
+
 
   AnimationController _scaleController;
   AnimationController _scale2Controller;
@@ -82,9 +86,19 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
         end: 32.0
     ).animate(_scale2Controller)..addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: LoginSignup()));
+        Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: Wrapper()));
       }
     }); //if animation is complete control transition of page to next activity(login)
+  }
+
+  @override
+  dispose() {
+    //to dispose all the animation controllers
+    _scaleController.dispose();
+    _positionController.dispose();
+    _scale2Controller.dispose();
+    _widthController.dispose();
+    super.dispose();
   }
 
   @override

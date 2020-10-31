@@ -1,12 +1,53 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_box/animations/FadeAnimation.dart';
+import 'package:quiz_box/animations/fade_animation.dart';
+import 'package:quiz_box/screens/student/student_home.dart';
+import 'package:quiz_box/screens/teacher/choose_teacher_subject.dart';
+import 'package:quiz_box/screens/teacher/teacher_bottom_navi.dart';
+import 'package:quiz_box/screens/teacher/teacher_home.dart';
+import 'package:quiz_box/services/auth.dart';
+import 'package:quiz_box/services/shared_pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+String teacher_subject='';
+List<dynamic> student_topics=new List();
+
 class LoginSignup extends StatefulWidget {
   @override
   _LoginSignupState createState() => _LoginSignupState();
 }
 
 class _LoginSignupState extends State<LoginSignup> {
+  @override
+
+  void initState() {
+
+    // FirebaseFirestore.instance
+    //     .collection('Teacher')
+    //     .doc(uid)
+    //     .get()
+    //     .then((DocumentSnapshot documentSnapshot) {
+    //   if (documentSnapshot.exists) {
+    //     setState(() {
+    //       teacher_subject=documentSnapshot.data()['teacher_subject'].toString();
+    //     });
+    //   }
+    // });
+    // FirebaseFirestore.instance
+    //     .collection('Student')
+    //     .doc(uid)
+    //     .get()
+    //     .then((DocumentSnapshot documentSnapshot) {
+    //   if (documentSnapshot.exists) {
+    //     setState(() {
+    //       student_topics=documentSnapshot.data()['toi'];
+    //     });
+    //   }
+    // });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,11 +96,13 @@ class _LoginSignupState extends State<LoginSignup> {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 330, 20, 0),
             child: GestureDetector(
-              // onTap: (){
-              //   signInWithGoogle().whenComplete(() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-              //     return Container();//TODO add teachers home
-              //   }))); //TODO add auth func
-              //},
+              onTap: (){
+                makeTeacher();
+                AuthService().signInWithGoogle().whenComplete(() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
+                  /*if(teacher_subject!='') return TeacherHome();
+                  else*/ return Minion();
+                })));
+              },
               child: FadeAnimation(1.3,Container(
                 margin: EdgeInsets.symmetric(),
                 height: 70,
@@ -94,12 +137,13 @@ class _LoginSignupState extends State<LoginSignup> {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 410, 20, 0),
             child: GestureDetector(
-              // onTap: (){
-              //   signInWithGoogle().whenComplete(() =>
-              //       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-              //         return Container(); //todo students home
-              //       }))); //todo add auth
-              //},
+              onTap: (){
+                makeStudent();
+                AuthService().signInWithGoogle().whenComplete(() =>
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
+                      return StudentHome();
+                    })));
+              },
               child: FadeAnimation(1.3,Container(
                 height: 70,
                 child: Card(
@@ -133,5 +177,4 @@ class _LoginSignupState extends State<LoginSignup> {
       ),
     );
   }
-
 }
