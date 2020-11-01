@@ -28,11 +28,12 @@ class _TopicRouteState extends State<TopicRoute> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white70,
         title: Text(
-          'Profile',
+          'Curriculum',
           style: GoogleFonts.montserrat(
             color: Colors.black,
             fontSize: 30,
@@ -93,27 +94,44 @@ class _TopicRouteState extends State<TopicRoute> {
               }
           ),
           Padding(
-            padding: EdgeInsets.all(30.0),
+            padding: EdgeInsets.all(20.0),
           ),
           Text(
-            "Click clear if you want to clear list or Submit to Save your interests",
-            style: TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic),
+            "  Click clear if you want to clear list or Submit to  Save your interests",
+            style: GoogleFonts.montserrat(
+              fontSize: 17,
+            ),
           ),
-          RaisedButton(
-            onPressed: () {
-              topic.clear();
+    SizedBox(height: 10,),
+    FlatButton(
+    shape: StadiumBorder(),
+    color: Colors.indigo,
+    child: Text("CLEAR",
+    style: GoogleFonts.aBeeZee(
+    letterSpacing: 3,
+    color: Colors.white,
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    ),
+    ),
+    onPressed: (){
+      topic.clear();
+    },
+    ),
+          FlatButton(
+            shape: StadiumBorder(),
+            color: Colors.indigo,
+            child: Text("SUBMIT",
+              style: GoogleFonts.aBeeZee(
+                letterSpacing: 3,
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            onPressed: (){
+              handleSubmit(context);
             },
-            child: Text(
-              "CLEAR",
-              style: TextStyle(fontSize: 25.0),
-            ),
-          ),
-          RaisedButton(
-            onPressed: () => handleSubmit(context),
-            child: Text(
-              "SUBMIT",
-              style: TextStyle(fontSize: 25.0),
-            ),
           ),
         ],
       ),

@@ -89,6 +89,7 @@ class _StudentProfileState extends State<StudentProfile> {
           SizedBox(width: 10,)
         ],
       ),
+      backgroundColor: Colors.blue[50],
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
