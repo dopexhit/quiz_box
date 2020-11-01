@@ -16,6 +16,9 @@ class CreateQuiz extends StatefulWidget {
 class _CreateQuizState extends State<CreateQuiz> {
   final _formKey = GlobalKey<FormState>();
   String quizId, quizTitle, quiImgUrl, quizTime, quizDescription, quizSubject;
+  List<String>choice=['https://images.unsplash.com/photo-1497864149936-d3163f0c0f4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+  ,'https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80',
+  'https://images.unsplash.com/photo-1599008633840-052c7f756385?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'];
 
   DatabaseService databaseService = new DatabaseService();
   bool _isLoading = false;
@@ -26,6 +29,7 @@ class _CreateQuizState extends State<CreateQuiz> {
       });
 
       quizId = randomAlphaNumeric(16);
+      quiImgUrl= choice.elementAt((int.parse(randomNumeric(8)))%3);
 
       await databaseService
           .addQuiz2(quizId, quiImgUrl, quizTime, quizTitle, quizDescription)
@@ -37,11 +41,7 @@ class _CreateQuizState extends State<CreateQuiz> {
               quizId: quizId,
             );
           }));
-          /*Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AddQuestion(
-                        quizId: quizId,)));*/
+
         });
       });
     }
@@ -122,20 +122,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                   child: Image.asset("assets/images/create.png"),
                 )
                 ,
-                TextFormField(
-                  validator: (val) =>
-                  val.isEmpty ? 'Enter Image Url' : null,
-                  decoration: kTextFieldDecoration.copyWith(
-                    prefixIcon: Icon(Icons.title),
-                    labelText: 'Image Url',
-                  ),
-                  onChanged: (val) {
-                    quiImgUrl = val;
-                  },
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+
                 TextFormField(
                   validator: (val) =>
                   val.isEmpty ? 'Enter Quiz Time' : null,

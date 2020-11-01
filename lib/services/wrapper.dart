@@ -19,13 +19,6 @@ class Wrapper extends StatelessWidget {
     if(user == null) return LoginSignup();
     else {
       uid = user.uid;
-      Firestore.instance.collection('Teacher').doc(uid)
-          .get()
-          .then((DocumentSnapshot documentSnapshot) {
-        if (documentSnapshot.exists) {
-          quizSubject=documentSnapshot.data()['teacher_subject'].toString();
-         }
-      });
       getState(context);
       return Container();
     }

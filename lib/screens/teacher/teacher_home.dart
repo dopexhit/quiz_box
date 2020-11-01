@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_box/screens/login_signup.dart';
@@ -46,6 +47,14 @@ class _TeacherQuizState extends State<TeacherQuiz> {
 
   @override
   void initState() {
+    Firestore.instance.collection('Teacher').doc(uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists && quizSubject=='') {
+        quizSubject=documentSnapshot.data()['subject'].toString();
+        print(quizSubject);
+      }
+    });
     databaseService.getQuizzesData(
         quizSubject
     ).then((val){

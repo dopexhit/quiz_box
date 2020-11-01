@@ -2,15 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quiz_box/model/custom_user.dart';
+import 'package:quiz_box/services/database.dart';
 
-String name='';
-String email='';
-String imageUrl='';
+
 String uid='';
 
 class AuthService{
 
-
+  String name='';
+  String email='';
+  String imageUrl='';
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -57,7 +58,10 @@ class AuthService{
       name = user.displayName;
       email = user.email;
       imageUrl = user.photoURL;
+      String phoneNo=user.phoneNumber;
 
+      await DatabaseService().updateTeacherData(name, phoneNo, imageUrl, null, null);
+      await DatabaseService().updateUserData(name, phoneNo, imageUrl, null, null, null);
       // Only taking the first part of the name, i.e., First Name
       if (name.contains(" ")) {
         name = name.substring(0, name.indexOf(" "));

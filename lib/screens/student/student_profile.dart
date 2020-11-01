@@ -1,26 +1,26 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_box/screens/login_signup.dart';
 import 'package:quiz_box/screens/student/show_details.dart';
+import 'package:quiz_box/screens/student/topics.dart';
 import 'package:quiz_box/screens/student/update_info.dart';
-import 'package:quiz_box/screens/teacher/show_teacher_details.dart';
-import 'package:quiz_box/screens/teacher/update_teach_info.dart';
 import 'package:quiz_box/services/auth.dart';
 import 'package:quiz_box/shared/constants.dart';
 
-class TeacherProfile extends StatefulWidget {
+class StudentProfile extends StatefulWidget {
 
   String uid;
-  TeacherProfile({this.uid});
+  StudentProfile({this.uid});
 
   @override
-  _TeacherProfileState createState() => _TeacherProfileState(uid: uid);
+  _StudentProfileState createState() => _StudentProfileState(uid: uid);
 }
 
-class _TeacherProfileState extends State<TeacherProfile> {
+class _StudentProfileState extends State<StudentProfile> {
 
   String uid;
-  _TeacherProfileState({this.uid});
+  _StudentProfileState({this.uid});
 
   // updating info where details are given in bottom sheet after clicking edit floating button
   void _updateInfo(context, uid){
@@ -31,7 +31,7 @@ class _TeacherProfileState extends State<TeacherProfile> {
             child: Container(
               height: 1000,
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: UpdateTeachInfo(),
+              child: UpdateInfo(),
             ),
           );
         }
@@ -94,10 +94,31 @@ class _TeacherProfileState extends State<TeacherProfile> {
           children: <Widget>[
             //ImagesInput(),
             SizedBox(height: 15.0,),
-            ShowTeachDetails(),
+            ShowDetails(),
             SizedBox(height: 24.0,),
-
-            // registering for quizzes todo
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_){
+                  return TopicRoute();
+                }));
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 18),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width - 48,
+                child: Text(
+                  "Chose your curriculum subjects",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

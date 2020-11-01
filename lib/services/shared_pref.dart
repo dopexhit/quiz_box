@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_box/screens/student/student_bottom_navi.dart';
 import 'package:quiz_box/screens/student/student_home.dart';
+import 'package:quiz_box/screens/student/student_profile.dart';
 import 'package:quiz_box/screens/teacher/teacher_bottom_navi.dart';
 import 'package:quiz_box/screens/teacher/teacher_home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +23,7 @@ import 'package:shared_preferences/shared_preferences.dart';
         return BottomNaviHome();
       }));
       else if(state==0) Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-        return StudentHome();
+        return StuBottomNaviHome();
       }));
     }
 //}

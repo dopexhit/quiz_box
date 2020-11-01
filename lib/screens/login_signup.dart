@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_box/animations/fade_animation.dart';
+import 'package:quiz_box/screens/student/student_bottom_navi.dart';
 import 'package:quiz_box/screens/student/student_home.dart';
+import 'package:quiz_box/screens/student/student_profile.dart';
 import 'package:quiz_box/screens/teacher/choose_teacher_subject.dart';
 import 'package:quiz_box/screens/teacher/teacher_bottom_navi.dart';
 import 'package:quiz_box/screens/teacher/teacher_home.dart';
@@ -99,8 +101,7 @@ class _LoginSignupState extends State<LoginSignup> {
               onTap: (){
                 makeTeacher();
                 AuthService().signInWithGoogle().whenComplete(() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-                  /*if(teacher_subject!='') return TeacherHome();
-                  else*/ return Minion();
+                  return BottomNaviHome();
                 })));
               },
               child: FadeAnimation(1.3,Container(
@@ -141,7 +142,7 @@ class _LoginSignupState extends State<LoginSignup> {
                 makeStudent();
                 AuthService().signInWithGoogle().whenComplete(() =>
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-                      return StudentHome();
+                      return StuBottomNaviHome();
                     })));
               },
               child: FadeAnimation(1.3,Container(

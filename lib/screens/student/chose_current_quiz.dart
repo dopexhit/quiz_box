@@ -7,23 +7,39 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:quiz_box/animations/minion_controller.dart';
+import 'package:quiz_box/screens/student/student_home.dart';
+import 'package:quiz_box/screens/teacher/choose_teacher_subject.dart';
 import 'package:quiz_box/screens/teacher/teacher_bottom_navi.dart';
 import 'package:quiz_box/services/auth.dart';
 import 'package:quiz_box/services/database.dart';
+import 'package:quiz_box/shared/constants.dart';
 
-String quizSubject='';
+import '../login_signup.dart';
 
-class Minion extends StatefulWidget {
+//String stuSubject='';
+List<dynamic> dynamic_topic=new List();
+
+class MinionStu extends StatefulWidget {
   @override
-  _MinionState createState() => _MinionState();
+  _MinionStuState createState() => _MinionStuState();
 }
 
-class _MinionState extends State<Minion> {
+class _MinionStuState extends State<MinionStu> {
   MinionController minionController;
-  final List<String> subjects= ['Physics', 'Maths', 'Chemistry', 'English', 'Biology', 'Computer Science'];
   bool _isLoading=false;
   @override
   void initState() {
+    FirebaseFirestore.instance
+        .collection('Student')
+        .doc(uid+'??')
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        setState(() {
+          dynamic_topic=documentSnapshot.data()['toi'];
+        });
+      }
+    });
     super.initState();
     minionController = MinionController();
   }
@@ -32,6 +48,54 @@ class _MinionState extends State<Minion> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white70,
+        title: Text(
+          'View Quizzes',
+          style: GoogleFonts.montserrat(
+            color: Colors.black,
+            fontSize: 30,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        elevation: 6,
+        actions: [
+          Card(
+            elevation: 10,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(700.0),
+            ),
+            color: Colors.grey[300],
+            child: PopupMenuButton<String>(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(700.0),
+              ),
+              icon: Icon(Icons.list,color: Colors.black45,size: 28,),
+              onSelected: choiceAction,
+              offset: Offset(0, 100),
+              itemBuilder: (BuildContext context){
+                return Constants.choices.map((String choice){
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Row(
+                      children: [
+                        Icon(Icons.call_missed_outgoing,color: Colors.black45,),
+                        SizedBox(width: 15,),
+                        Text(choice,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 17,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList();
+              },
+            ),
+          ),
+          SizedBox(width: 10,)
+        ],
+      ),
       body: _isLoading ? Container(
         child: Center(
           child: CircularProgressIndicator(),
@@ -55,7 +119,7 @@ class _MinionState extends State<Minion> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: 50,),
-                Text("Choose Subject",textAlign: TextAlign.center,
+                Text("Choose Quiz Subject",textAlign: TextAlign.center,
                   style: GoogleFonts.montserrat(
                     fontSize: 35,
                     color: Colors.indigo,
@@ -80,10 +144,10 @@ class _MinionState extends State<Minion> {
                   //height: size.width*0.25,
                   width: size.width*0.8,
                   child: DropdownButtonFormField(
-                    items: subjects.map((sub){
+                    items: dynamic_topic.map((sub){
                       return DropdownMenuItem(
                         value: sub,
-                        child: Text(sub),
+                        child: Text(sub.toString()),
                       );
                     }).toList(),
                     hint: Text(' Subjects',style: GoogleFonts.montserrat(),),
@@ -128,11 +192,10 @@ class _MinionState extends State<Minion> {
           }else{
             try{
               minionController.jump();
-              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-              //   return BottomNaviHome();
-              //   //initally TeacherQuiz
-              // }));
-              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (_){
+                return StudentQuiz();
+              }));
+              //Navigator.pop(context);
             }catch(e){
               print(e);
             }
@@ -143,5 +206,13 @@ class _MinionState extends State<Minion> {
       ),
     );
 
+  }
+  void choiceAction(String choice){
+    if(choice == Constants.SignOut)
+    {
+      AuthService().signOutGoogle().whenComplete(() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
+        return LoginSignup();
+      })));
+    }
   }
 }
