@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_box/model/custom_user.dart';
 import 'package:quiz_box/screens/teacher/choose_teacher_subject.dart';
 import 'package:quiz_box/services/database.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class UpdateTeachInfo extends StatefulWidget {
 
   @override
@@ -39,10 +39,12 @@ class _UpdateTeachInfoState extends State<UpdateTeachInfo> {
             child: Column(
               children: <Widget>[
                 Text(
-                  "Update your Info....",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+                  "Update Info",
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    letterSpacing: 2,
                   ),
                 ),
                 SizedBox(height: 25.0,),
@@ -89,13 +91,11 @@ class _UpdateTeachInfoState extends State<UpdateTeachInfo> {
                 ),
                 SizedBox(height: 15,),
                 FlatButton(
+                  shape: StadiumBorder(),
+                  color: Colors.indigo,
                   child: Text("Choose the subject you teach"),
-                  color: Colors.blue,
                   textColor: Colors.white,
                   padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>Minion()));
                     setState(() {
@@ -107,12 +107,10 @@ class _UpdateTeachInfoState extends State<UpdateTeachInfo> {
                 // Information is stored to fireStore firebase
                 FlatButton(
                   child: Text("Update"),
-                  color: Colors.blue,
+                  shape: StadiumBorder(),
+                  color: Colors.indigo,
                   textColor: Colors.white,
                   padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
                   onPressed: () async{
                     if(_formKey.currentState.validate()){
                       await DatabaseService().updateTeacherData(

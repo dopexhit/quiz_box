@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_box/model/custom_user.dart';
 import 'package:quiz_box/services/database.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class UpdateInfo extends StatefulWidget {
 
   @override
@@ -40,10 +40,12 @@ class _UpdateInfoState extends State<UpdateInfo> {
             child: Column(
               children: <Widget>[
                 Text(
-                  "Update your Info....",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+                  "Update Info",
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    letterSpacing: 2,
                   ),
                 ),
                 SizedBox(height: 25.0,),
@@ -118,12 +120,10 @@ class _UpdateInfoState extends State<UpdateInfo> {
                 // Information is stored to fireStore firebase
                 FlatButton(
                   child: Text("Update"),
-                  color: Colors.blue,
+                  shape: StadiumBorder(),
+                  color: Colors.indigo,
                   textColor: Colors.white,
                   padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
                   onPressed: () async{
                     if(_formKey.currentState.validate()){
                       await DatabaseService().updateUserData(

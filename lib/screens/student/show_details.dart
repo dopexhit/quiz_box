@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:quiz_box/model/custom_user.dart';
 import 'package:quiz_box/services/auth.dart';
 import 'package:quiz_box/services/database.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class ShowDetails extends StatefulWidget {
@@ -154,7 +155,16 @@ class _ShowDetailsState extends State<ShowDetails> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: FlatButton(
-                    child: Text("ADD PHOTO"),
+                    color: Colors.indigo,
+                    shape: StadiumBorder(),
+                    child: Text("ADD PHOTO",
+                    style:GoogleFonts.aBeeZee(
+                      letterSpacing: 3,
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),),
+
                     onPressed: (){
                       uploadPic(context);
                     },
@@ -164,88 +174,113 @@ class _ShowDetailsState extends State<ShowDetails> {
                 // username
                 SizedBox(height: 20.0,),
                 Text(
-                  "Your UserName",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Quicksand',
-                    color: Colors.black26,
+                  "Username",
+                  style: GoogleFonts.aBeeZee(
+                    letterSpacing: 4,
+                    color: Colors.black54,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 SizedBox(height: 12.0,),
                 Text(
                   "${userData.name}",
-                  style: TextStyle(fontSize: 20),
+                  style: GoogleFonts.gabriela(
+                    letterSpacing: 4,
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
 
                 // phone number
-                SizedBox(height: 20,),
+                SizedBox(height: 24,),
                 Text(
-                  "Your Phone Number",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Quicksand',
-                    color: Colors.black26,
+                  "Phone Number",
+                  style: GoogleFonts.aBeeZee(
+                    letterSpacing: 4,
+                    color: Colors.black54,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 SizedBox(height: 12.0,),
                 Text(
                   "${userData.phoneNo}",
-                  style: TextStyle(fontSize: 20),
+                  style: GoogleFonts.gabriela(
+                    letterSpacing: 4,
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
 
                 // registration number
-                SizedBox(height: 20,),
+                SizedBox(height: 24,),
                 Text(
-                  "Your Registration Number",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Quicksand',
-                    color: Colors.black26,
+                  "Registration Number",
+                  style: GoogleFonts.aBeeZee(
+                    letterSpacing: 4,
+                    color: Colors.black54,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 SizedBox(height: 12.0,),
                 Text(
                   "${userData.regNo}",
-                  style: TextStyle(fontSize: 20),
+                  style: GoogleFonts.gabriela(
+                    letterSpacing: 4,
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
 
                 // user's branch
-                SizedBox(height: 20,),
+                SizedBox(height: 24,),
                 Text(
-                  "Your Branch",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Quicksand',
-                    color: Colors.black26,
+                  "Branch",
+                  style: GoogleFonts.aBeeZee(
+                    letterSpacing: 4,
+                    color: Colors.black54,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 SizedBox(height: 12.0,),
                 Text(
                   "${userData.branch}",
-                  style: TextStyle(fontSize: 20),
+                  style: GoogleFonts.gabriela(
+                    letterSpacing: 4,
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
 
                 // user's gender
-                SizedBox(height: 20,),
+                SizedBox(height: 24,),
                 Text(
-                  "Your Gender",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Quicksand',
-                    color: Colors.black26,
+                  "Gender",
+                  style:  GoogleFonts.aBeeZee(
+                    letterSpacing: 4,
+                    color: Colors.black54,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 SizedBox(height: 12.0,),
                 Text(
                   "${userData.gender}",
-                  style: TextStyle(fontSize: 20),
+                  style: GoogleFonts.gabriela(
+                    letterSpacing: 4,
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 24,),
               ],
             ),
           );

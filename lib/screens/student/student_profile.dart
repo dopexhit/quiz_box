@@ -95,7 +95,7 @@ class _StudentProfileState extends State<StudentProfile> {
             //ImagesInput(),
             SizedBox(height: 15.0,),
             ShowDetails(),
-            SizedBox(height: 24.0,),
+            SizedBox(height: 20.0,),
             GestureDetector(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_){
@@ -105,8 +105,8 @@ class _StudentProfileState extends State<StudentProfile> {
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 18),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.indigo,
+                  borderRadius: BorderRadius.circular(60),
                 ),
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width - 48,
@@ -125,6 +125,7 @@ class _StudentProfileState extends State<StudentProfile> {
 
       // edit button for updating info
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigo,
         child: Icon(Icons.mode_edit),
         onPressed: () => _updateInfo(context,uid),
       ),

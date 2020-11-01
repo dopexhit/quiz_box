@@ -127,8 +127,8 @@ class _MinionStuState extends State<MinionStu> {
                   )
                   ,),
                 Container(
-                  height: 480,
-                  width: 500,
+                  height: 400,
+                  width: 400,
                   child: GestureDetector(
                     onTap: (){
                       minionController.jump();
@@ -158,7 +158,7 @@ class _MinionStuState extends State<MinionStu> {
                     }),
                   ),
                 ),
-                SizedBox(height: 25,),
+                SizedBox(height: 50,),
               ],
             ),
           ],

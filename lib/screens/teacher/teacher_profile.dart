@@ -40,6 +40,7 @@ class _TeacherProfileState extends State<TeacherProfile> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white70,
@@ -89,21 +90,40 @@ class _TeacherProfileState extends State<TeacherProfile> {
           SizedBox(width: 10,)
         ],
       ),
+      backgroundColor: Colors.blue[50],
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            //ImagesInput(),
-            SizedBox(height: 15.0,),
-            ShowTeachDetails(),
-            SizedBox(height: 24.0,),
+        child: Stack(
+          children:[
+            Positioned(
+              top: 0,
+              left: 0,
+              child: Image.asset("assets/images/main_top.png"),
+              width: size.width * 0.5,
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset("assets/images/login_bottom.png"),
+              width: size.width * 0.6,
+            ),
+            Column(
 
-            // registering for quizzes todo
-          ],
+            children: <Widget>[
+              //ImagesInput(),
+              SizedBox(height: 15.0,),
+              ShowTeachDetails(),
+              SizedBox(height: 24.0,),
+
+              // registering for quizzes todo
+            ],
+          ),
+      ],
         ),
       ),
 
       // edit button for updating info
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigo,
         child: Icon(Icons.mode_edit),
         onPressed: () => _updateInfo(context,uid),
       ),
