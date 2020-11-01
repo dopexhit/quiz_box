@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:custom_navigator/custom_scaffold.dart';
 import 'package:quiz_box/screens/student/student_bottom_navi.dart';
+import 'package:quiz_box/services/auth.dart';
 
 class Results extends StatefulWidget {
   final int correct,incorrect,total;
@@ -56,6 +58,7 @@ class _ResultsState extends State<Results> {
               SizedBox(height: 17,),
               RaisedButton(
                 onPressed: () {
+                  //updateScore(widget.correct,widget.total);
                   Navigator.pop(context);
                 },
                 color: Colors.indigo,
@@ -80,6 +83,22 @@ class _ResultsState extends State<Results> {
       ),
     );
   }
+  // void updateScore(int correct, int total) async{
+  //   int quiz_given=0,corrected,totaled;
+  //   DocumentReference doc=FirebaseFirestore.instance.collection('Student').doc(uid+"score");
+  //   print(doc);
+  //
+  //     doc.get().then((DocumentSnapshot documentSnapshot) {
+  //       if (documentSnapshot.exists) {
+  //         //setState(() {
+  //           corrected=correct+documentSnapshot.data()['correct'];
+  //           totaled=total+documentSnapshot.data()['total'];
+  //           quiz_given=documentSnapshot.data()['quiz_given']+1;
+  //         //});
+  //       }
+  //     });
+  //     await doc.update({'correct': correct+corrected,'total': total+totaled, 'quiz_given': quiz_given});
+  // }
 }
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_box/screens/login_signup.dart';
 import 'package:quiz_box/screens/teacher/question_type.dart';
@@ -125,7 +126,9 @@ class _CreateQuizState extends State<CreateQuiz> {
 
                 TextFormField(
                   validator: (val) =>
-                  val.isEmpty ? 'Enter Quiz Time' : null,
+                  val.isEmpty ? 'Enter Quiz Time (in minutes)' : null,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  keyboardType: TextInputType.number,
                   decoration: kTextFieldDecoration.copyWith(
                     labelText: 'Quiz Time',
                     prefixIcon: Icon(Icons.access_time),

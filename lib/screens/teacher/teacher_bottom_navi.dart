@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_box/screens/teacher/create_quiz.dart';
-import 'package:quiz_box/screens/teacher/leaderboard.dart';
 import 'package:quiz_box/screens/teacher/teacher_home.dart';
 import 'package:quiz_box/screens/teacher/teacher_profile.dart';
 import 'package:quiz_box/services/auth.dart';
@@ -22,7 +21,6 @@ class _BottomNaviHomeState extends State<BottomNaviHome> {
   final TeacherProfile _teacherProfile = TeacherProfile();
   final TeacherQuiz _teacherQuiz = TeacherQuiz();
   final CreateQuiz _createQuiz = CreateQuiz();
-  final LeaderBoard _leaderBoard = LeaderBoard();
 
 
   Widget _showPage =  new TeacherProfile();
@@ -39,12 +37,10 @@ class _BottomNaviHomeState extends State<BottomNaviHome> {
         return _teacherQuiz;
         break;
 
-      case 2:
+      default:
         return _createQuiz;
         break;
 
-      default:
-        return _leaderBoard;
     }
   }
 
@@ -77,7 +73,6 @@ class _BottomNaviHomeState extends State<BottomNaviHome> {
           Icon(Icons.person,size: 20,),
           Icon(Icons.home,size: 20,),
           Icon(Icons.add_to_photos,size: 20,),
-          Icon(Icons.score,size: 20,),
         ],
         onTap: (index){
           setState(() {

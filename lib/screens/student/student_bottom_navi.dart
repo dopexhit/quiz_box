@@ -5,7 +5,6 @@ import 'package:quiz_box/screens/student/chose_current_quiz.dart';
 import 'package:quiz_box/screens/student/student_profile.dart';
 import 'package:quiz_box/screens/teacher/choose_teacher_subject.dart';
 import 'package:quiz_box/screens/teacher/create_quiz.dart';
-import 'package:quiz_box/screens/teacher/leaderboard.dart';
 import 'package:quiz_box/screens/teacher/teacher_home.dart';
 import 'package:quiz_box/screens/teacher/teacher_profile.dart';
 import 'package:quiz_box/services/auth.dart';
@@ -23,7 +22,6 @@ class _StuBottomNaviHomeState extends State<StuBottomNaviHome> {
   int pageIndex = 0;
   final StudentProfile _studentProfile = StudentProfile();
   final MinionStu _studentChoice = MinionStu();
-  final LeaderBoard _leaderBoard = LeaderBoard();
 
 
   Widget _showPage =  new StudentProfile();
@@ -36,12 +34,10 @@ class _StuBottomNaviHomeState extends State<StuBottomNaviHome> {
         return _studentProfile;
         break;
 
-      case 1:
+      default:
         return _studentChoice;
         break;
 
-      default:
-        return _leaderBoard;
     }
   }
 
@@ -73,7 +69,6 @@ class _StuBottomNaviHomeState extends State<StuBottomNaviHome> {
         items: [
           Icon(Icons.person,size: 20,),
           Icon(Icons.home,size: 20,),
-          Icon(Icons.score,size: 20,),
         ],
         onTap: (index){
           setState(() {

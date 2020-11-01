@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_box/model/question_model.dart';
 import 'package:quiz_box/screens/student/results.dart';
+import 'package:quiz_box/screens/teacher/choose_teacher_subject.dart';
 import 'package:quiz_box/services/database.dart';
 import 'package:quiz_box/shared/constants.dart';
 
@@ -21,6 +22,7 @@ int _correct = 0;
 int _incorrect = 0;
 int _notAttempted = 0;
 int total = 0;
+int time;
 
 /// Stream
 Stream infoStream;
@@ -42,6 +44,18 @@ class _PlayQuizStuState extends State<PlayQuizStu> {
       setState(() {});
       print("init don $total ${widget.quizId} ");
 
+    });
+
+    FirebaseFirestore.instance
+        .collection(quizSubject)
+        .doc(widget.quizId)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        //setState(() {
+          time=int.parse(documentSnapshot.data()['time'].toString());
+        //});
+      }
     });
 
     if(infoStream == null){
@@ -87,7 +101,7 @@ class _PlayQuizStuState extends State<PlayQuizStu> {
   void dispose() {
     infoStream = null;
     super.dispose();
-  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -131,8 +145,8 @@ class _PlayQuizStuState extends State<PlayQuizStu> {
             Icon(Icons.timer,color: Colors.indigo,),
             SizedBox(width: 5,),
             Center(child: TweenAnimationBuilder<Duration>(
-                duration: Duration(minutes: 1),
-                tween: Tween(begin: Duration(minutes: 1), end: Duration.zero),
+                duration: Duration(minutes: time),
+                tween: Tween(begin: Duration(minutes: time), end: Duration.zero),
                 onEnd: () {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
                     return Results(
