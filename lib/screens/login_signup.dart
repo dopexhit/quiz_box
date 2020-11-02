@@ -102,7 +102,11 @@ class _LoginSignupState extends State<LoginSignup> {
                 makeTeacher();
                 AuthService().signInWithGoogle().whenComplete(() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
                   return BottomNaviHome();
-                })));
+                }))).catchError((e)=>{
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
+                    return LoginSignup();
+                  }))
+                });
               },
               child: FadeAnimation(1.3,Container(
                 margin: EdgeInsets.symmetric(),
@@ -143,7 +147,11 @@ class _LoginSignupState extends State<LoginSignup> {
                 AuthService().signInWithGoogle().whenComplete(() =>
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
                       return StuBottomNaviHome();
-                    })));
+                    }))).catchError((e)=>{
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
+                    return LoginSignup();
+                  }))
+                });
               },
               child: FadeAnimation(1.3,Container(
                 height: 70,

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Quiz Box',
-        darkTheme: ThemeData.dark(),
+        //darkTheme: ThemeData.dark(),
         home: SplashPage(),
       ),
     );

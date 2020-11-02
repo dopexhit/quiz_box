@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quiz_box/model/custom_user.dart';
 import 'package:quiz_box/screens/teacher/choose_teacher_subject.dart';
 import 'package:quiz_box/services/database.dart';
@@ -66,6 +67,8 @@ class _UpdateTeachInfoState extends State<UpdateTeachInfo> {
                 SizedBox(height: 15),
                 TextFormField(
                   initialValue: userData.phoneNo,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(hasFloatingPlaceholder: true, hintText: "Enter phone number"),
                   validator: (input) {
                     if (input.isEmpty) {

@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quiz_box/model/custom_user.dart';
 import 'package:quiz_box/services/database.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,6 +68,8 @@ class _UpdateInfoState extends State<UpdateInfo> {
                 SizedBox(height: 15),
                 TextFormField(
                   initialValue: userData.phoneNo,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(hasFloatingPlaceholder: true, hintText: "Enter phone number"),
                   validator: (input) {
                     if (input.isEmpty) {
@@ -93,6 +96,8 @@ class _UpdateInfoState extends State<UpdateInfo> {
                 SizedBox(height: 15),
                 TextFormField(
                   initialValue: userData.regNo,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(hasFloatingPlaceholder: true, hintText: "Enter your registration number"),
                   validator: (input) {
                     if (input.isEmpty) {
