@@ -2,7 +2,7 @@
 
 A quizzer app
 
-Features in this app are:
+Features are as follows:
 1. Firebase authorization. 
 2. Timer bound tests.
 3. Admin has access to all the results and user-profiles. 
