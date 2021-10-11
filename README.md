@@ -1,6 +1,6 @@
-# quiz_box
+# Quiz Box
 
-A quizzer app
+This is a quizzer app.
 
 Features are as follows:
 1. Firebase authorization. 
